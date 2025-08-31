@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAM Repair | Expert Electronic Repair Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #e53935; /* A vibrant red */
+            --secondary-color: #1a1a1a; /* Dark black */
+            --tertiary-color: #333333; /* Dark grey */
+            --text-color-light: #ffffff;
+            --text-color-dark: #cccccc;
+            --bg-color: #121212;
+            --accent-color: #e53935;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top phone bar */
+        .top-phone-bar {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            text-align: center;
+            padding: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        .top-phone-bar a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--text-color-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c62828;
+        }
+
+        section {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--tertiary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--secondary-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--tertiary-color);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Why Choose Us Section */
+        #why-choose-us {
+            background-color: var(--bg-color);
+            color: var(--text-color-dark);
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .feature-item {
+            background-color: var(--tertiary-color);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            color: var(--text-color-light);
+        }
+
+        /* Warranty Section */
+        #warranty {
+            background-color: var(--secondary-color);
+            color: var(--text-color-dark);
+        }
+
+        #warranty .warranty-box {
+            background-color: var(--tertiary-color);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #warranty .warranty-box p {
+            font-size: 1.1rem;
+            color: var(--text-color-light);
+        }
+
+        /* About Us Section */
+        #about {
+            background-color: var(--bg-color);
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-color-dark);
+        }
+
+        /* Quote Form Section */
+        #quote {
+            background-color: var(--secondary-color);
+        }
+
+        .quote-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            text-align: left;
+        }
+
+        .quote-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .quote-form input,
+        .quote-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--tertiary-color);
+            background-color: var(--tertiary-color);
+            color: var(--text-color-light);
+            border-radius: 4px;
+        }
+
+        .quote-form textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .quote-form button {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* FAQ Section */
+        #faq {
+            background-color: var(--bg-color);
+        }
+
+        .faq-item {
+            background-color: var(--tertiary-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: left;
+            margin: 1.5rem auto;
+            max-width: 800px;
+        }
+
+        .faq-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            color: var(--text-color-dark);
+        }
+
+        /* Testimonials Section */
+        #testimonials {
+            background-color: var(--secondary-color);
+        }
+
+        .testimonial-card {
+            background-color: var(--tertiary-color);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem auto;
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--text-color-light);
+        }
+
+        .testimonial-card .author {
+            display: block;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            text-align: right;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-color-dark);
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-phone-bar">
+        Call for a free quote: <a href="tel:8048960561">804-896-0561</a>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>RAM Repair</h1>
+            <p>Expert Electronic Repair Services</p>
+            <a href="tel:8048960561" class="cta-button">Call for a Free Quote Today!</a>
+        </div>
+    </header>
+
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Smartphone Repair</h3>
+                    <p>From cracked screens and broken backglass to faulty batteries and charging ports, we can get your phone working like new.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Game Console Repair</h3>
+                    <p>We specialize in common console issues like HDMI port repair, power supply problems, and overheating to bring your gaming console back to life.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Tablet Repair</h3>
+                    <p>Whether you have a broken display, a dead battery, or a damaged charging port, our technicians can restore your tablet's functionality.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Smartwatch Repair</h3>
+                    <p>We provide professional repair services for smartwatches, including screen replacements, battery issues, and charging problems.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Computer Repair</h3>
+                    <p>We offer a wide range of computer repair services, including hard drive replacement, software troubleshooting, and component upgrades to get you back to work or play.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Motherboard Repair</h3>
+                    <p>We have the expertise to diagnose and repair issues at the component level, including intricate motherboard and circuit board repairs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-choose-us">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h3>High-Quality Parts</h3>
+                    <p>We use only the highest quality replacement parts to ensure that your device is repaired to the highest standards and performs flawlessly.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Professional Technicians</h3>
+                    <p>Our repair technicians are highly trained professionals who take pride in their work and have the expertise to handle even the most complex repairs.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Thorough Testing</h3>
+                    <p>Before any device is returned, we perform extensive testing and a final double-check to ensure your repair is complete and your device is working perfectly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="warranty">
+        <div class="container">
+            <h2>Our Warranty</h2>
+            <div class="warranty-box">
+                <p>All parts and repairs provided by RAM Repair are covered by a **2-month warranty against defects**. This warranty does not cover any form of physical or water damage.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About RAM Repair</h2>
+            <p>At RAM Repair, we are passionate about bringing your favorite devices back to life. With years of experience and a commitment to quality, we specialize in fixing a wide range of electronics—from cracked screens to complex motherboard issues. We believe in providing transparent, reliable, and efficient service to get you reconnected as quickly as possible.</p>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>How long does a typical repair take?</h3>
+                <p>Most of our repairs are completed within **24 to 48 hours** from the time you drop off your device. We prioritize quick and efficient service to get you back up and running as soon as possible.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What devices do you not work on?</h3>
+                <p>While we specialize in a wide range of electronics, we do not currently work on **printers, TVs, or anything radio related.**</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial-card">
+                <p>"RAM Repair fixed my laptop's charging issue quickly and for a great price. I highly recommend them!"</p>
+                <span class="author">- Jane D.</span>
+            </div>
+            <div class="testimonial-card">
+                <p>"My son's game console was unusable until RAM Repair fixed the HDMI port. Fast and professional service!"</p>
+                <span class="author">- Mike T.</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="quote">
+        <div class="container">
+            <h2>Get a Free Quote!</h2>
+            <form class="quote-form" action="mailto:ram_repair@yahoo.com" method="post" enctype="text/plain">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="Name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="Email" required>
+                
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="Phone Number">
+                
+                <label for="device">Device Type:</label>
+                <input type="text" id="device" name="Device Type" required>
+                
+                <label for="message">Brief Description of the Issue:</label>
+                <textarea id="message" name="Description" required></textarea>
+                
+                <button type="submit" class="cta-button">Send Quote Request</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 RAM Repair. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
