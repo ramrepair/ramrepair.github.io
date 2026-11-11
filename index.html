@@ -440,6 +440,12 @@
         #services, #warranty, #testimonials, #quote { background: #17181c; }
         #why-choose-us, #about, #faq { background: #101115; }
         .services-grid, .features-list { gap: 1.2rem; margin-top: 2.2rem; }
+        /* Center the final pair beneath the first four services on wide screens. */
+        @media (min-width: 1100px) {
+            .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .services-grid .service-card:nth-child(5) { grid-column: 2; }
+            .services-grid .service-card:nth-child(6) { grid-column: 3; }
+        }
         .service-card, .feature-item, .faq-item, #warranty .warranty-box, .review-card {
             background: linear-gradient(155deg, #292a30, #222329);
             border: 1px solid #3b3d46;
