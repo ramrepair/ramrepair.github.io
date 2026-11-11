@@ -415,9 +415,33 @@
                 <label for="device">Device Type:</label>
                 <input type="text" id="device" name="Device Type" required>
                 
+                <label for="device-model">Exact Device Model:</label>
+                <input type="text" id="device-model" name="Exact Device Model" placeholder="Example: PlayStation 5 CFI-1115A" required>
+
+                <label for="service-method">Preferred Service Method:</label>
+                <select id="service-method" name="Preferred Service Method" required style="width:100%;padding:0.8rem;border:1px solid #555;border-radius:5px;background:#333;color:#fff;font:inherit;">
+                    <option value="" disabled selected>Select a service method</option>
+                    <option value="Local drop-off">Local drop-off</option>
+                    <option value="Mail-in repair">Mail-in repair</option>
+                    <option value="Not sure yet">Not sure yet</option>
+                </select>
+
+                <label for="prior-repair" style="display:block;margin-top:1rem;">Has the device been opened or repaired before?</label>
+                <select id="prior-repair" name="Previously Opened or Repaired" required style="width:100%;padding:0.8rem;border:1px solid #555;border-radius:5px;background:#333;color:#fff;font:inherit;">
+                    <option value="" disabled selected>Select an answer</option>
+                    <option value="Yes">Yes</option><option value="No">No</option><option value="Unknown">Not sure</option>
+                </select>
+
+                <label for="data-important" style="display:block;margin-top:1rem;">Is the data on this device important?</label>
+                <select id="data-important" name="Customer Data Important" required style="width:100%;padding:0.8rem;border:1px solid #555;border-radius:5px;background:#333;color:#fff;font:inherit;">
+                    <option value="" disabled selected>Select an answer</option>
+                    <option value="Yes">Yes</option><option value="No">No</option><option value="Not applicable">Not applicable</option>
+                </select>
+
                 <label for="message">Brief Description of the Issue:</label>
                 <textarea id="message" name="Description" required></textarea>
                 
+                <p style="margin:1rem 0;color:#ccc;font-size:0.9rem;text-align:left;">Submitting this form requests a quote only. Do not ship or drop off a device until RAM Repair confirms acceptance and provides instructions. Back up important data when possible. Do not include passwords or sensitive information here.</p>
                 <button type="submit" class="cta-button">Send Quote Request</button>
             </form>
         </div>
