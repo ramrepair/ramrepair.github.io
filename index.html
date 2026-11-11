@@ -71,6 +71,37 @@
         header .hero-quality-message { max-width: 650px; margin: 0 auto 1.25rem; font-size: 1rem; line-height: 1.6; }
         header .hero-tagline { margin: 1rem 0 0; font-size: 0.95rem; font-weight: 600; color: var(--text-color-light); }
 
+        /* Floating quote shortcut: hidden whenever the quote section is on screen. */
+        .floating-quote {
+            position: fixed;
+            right: max(18px, env(safe-area-inset-right));
+            bottom: max(18px, env(safe-area-inset-bottom));
+            z-index: 1000;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.2rem;
+            background: var(--primary-color);
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.22);
+            border-radius: 999px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+        }
+        .floating-quote:hover, .floating-quote:focus-visible { background: #c62828; }
+        .floating-quote:focus-visible { outline: 3px solid white; outline-offset: 3px; }
+        .floating-quote.is-hidden { opacity: 0; visibility: hidden; transform: translateY(12px); pointer-events: none; }
+        @media (max-width: 600px) {
+            .floating-quote { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); padding: 0.75rem 1rem; font-size: 0.88rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .floating-quote { transition: none; }
+        }
+
         .cta-button {
             display: inline-block;
             background-color: var(--primary-color);
@@ -452,11 +483,39 @@
         </div>
     </section>
 
+    <a class="floating-quote" href="#quote" aria-label="Get a free repair quote">
+        <span aria-hidden="true">✉</span> Get a Free Quote
+    </a>
+
     <footer>
         <div class="container">
             <p>&copy; 2025 RAM Repair. All rights reserved.</p>
         </div>
     </footer>
 
+    <script>
+        (function () {
+            const shortcut = document.querySelector('.floating-quote');
+            const quote = document.getElementById('quote');
+            if (!shortcut || !quote) return;
+
+            function updateShortcut() {
+                const rect = quote.getBoundingClientRect();
+                const quoteVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                shortcut.classList.toggle('is-hidden', quoteVisible);
+                shortcut.setAttribute('aria-hidden', String(quoteVisible));
+                shortcut.tabIndex = quoteVisible ? -1 : 0;
+            }
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(updateShortcut, { threshold: 0 });
+                observer.observe(quote);
+            } else {
+                window.addEventListener('scroll', updateShortcut, { passive: true });
+                window.addEventListener('resize', updateShortcut);
+            }
+            updateShortcut();
+        })();
+    </script>
 </body>
 </html>
