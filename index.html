@@ -194,37 +194,45 @@
         }
 
         .quote-form {
-            max-width: 600px;
-            margin: 2rem auto 0;
+            max-width: 650px;
+            margin: 1.25rem auto 0;
             text-align: left;
         }
-
+        .quote-fields {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem 1rem;
+        }
+        .quote-full { grid-column: 1 / -1; }
         .quote-form label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             font-weight: 600;
+            font-size: 0.92rem;
         }
-
-        .quote-form input,
+        .quote-form .optional { color: var(--text-color-dark); font-weight: 400; }
+        .quote-form input:not([type="hidden"]),
+        .quote-form select,
         .quote-form textarea {
+            display: block;
             width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border: 1px solid var(--tertiary-color);
-            background-color: var(--tertiary-color);
+            min-width: 0;
+            padding: 0.7rem 0.8rem;
+            margin: 0;
+            border: 1px solid #555;
+            background: var(--tertiary-color);
             color: var(--text-color-light);
-            border-radius: 4px;
+            border-radius: 5px;
+            font: inherit;
         }
-
-        .quote-form textarea {
-            resize: vertical;
-            height: 120px;
-        }
-
-        .quote-form button {
-            width: 100%;
-            border: none;
-            cursor: pointer;
+        .quote-form textarea { resize: vertical; min-height: 88px; }
+        .quote-form input::placeholder,
+        .quote-form textarea::placeholder { color: #bbb; }
+        .quote-note { color: #ccc; font-size: 0.82rem; line-height: 1.5; margin: 0.85rem 0; }
+        .quote-form button { width: 100%; border: none; cursor: pointer; }
+        @media (max-width: 560px) {
+            .quote-fields { grid-template-columns: 1fr; gap: 0.7rem; }
+            .quote-full { grid-column: auto; }
         }
 
         /* FAQ Section */
@@ -402,48 +410,39 @@
             <h2>Get a Free Quote!</h2>
             <form class="quote-form" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="4f253b4d-599d-4294-a7db-8838c2382cbb">
-                
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="Name" required>
-                
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="Email" required>
-                
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="Phone Number">
-                
-                <label for="device">Device Type:</label>
-                <input type="text" id="device" name="Device Type" required>
-                
-                <label for="device-model">Exact Device Model:</label>
-                <input type="text" id="device-model" name="Exact Device Model" placeholder="Example: PlayStation 5 CFI-1115A" required>
-
-                <label for="service-method">Preferred Service Method:</label>
-                <select id="service-method" name="Preferred Service Method" required style="width:100%;padding:0.8rem;border:1px solid #555;border-radius:5px;background:#333;color:#fff;font:inherit;">
-                    <option value="" disabled selected>Select a service method</option>
-                    <option value="Local drop-off - Chester VA area">Local Drop-Off — Chester, VA Area</option>
-                    <option value="Mail-in repair">Mail-In Repair — Nationwide</option>
-                    <option value="Not sure yet">Not Sure Yet — Help Me Decide</option>
-                </select>
-                <p style="margin:0.65rem 0 1rem;color:#ccc;font-size:0.9rem;text-align:left;">Local drop-off is available by appointment for customers in Chester, Chesterfield, Richmond, and nearby communities. Please wait for confirmation before bringing in your device. Mail-in customers will receive shipping instructions after repair acceptance.</p>
-
-                <label for="prior-repair" style="display:block;margin-top:1rem;">Has the device been opened or repaired before?</label>
-                <select id="prior-repair" name="Previously Opened or Repaired" required style="width:100%;padding:0.8rem;border:1px solid #555;border-radius:5px;background:#333;color:#fff;font:inherit;">
-                    <option value="" disabled selected>Select an answer</option>
-                    <option value="Yes">Yes</option><option value="No">No</option><option value="Unknown">Not sure</option>
-                </select>
-
-                <label for="data-important" style="display:block;margin-top:1rem;">Is the data on this device important?</label>
-                <select id="data-important" name="Customer Data Important" required style="width:100%;padding:0.8rem;border:1px solid #555;border-radius:5px;background:#333;color:#fff;font:inherit;">
-                    <option value="" disabled selected>Select an answer</option>
-                    <option value="Yes">Yes</option><option value="No">No</option><option value="Not applicable">Not applicable</option>
-                </select>
-
-                <label for="message">Brief Description of the Issue:</label>
-                <textarea id="message" name="Description" required></textarea>
-                
-                <p style="margin:1rem 0;color:#ccc;font-size:0.9rem;text-align:left;">Submitting this form requests a quote only. Do not ship or drop off a device until RAM Repair confirms acceptance and provides instructions. Back up important data when possible. Do not include passwords or sensitive information here.</p>
-                <button type="submit" class="cta-button">Send Quote Request</button>
+                <div class="quote-fields">
+                    <div class="quote-field">
+                        <label for="name">Name <span aria-hidden="true">*</span></label>
+                        <input type="text" id="name" name="Name" autocomplete="name" required>
+                    </div>
+                    <div class="quote-field">
+                        <label for="email">Email <span aria-hidden="true">*</span></label>
+                        <input type="email" id="email" name="Email" autocomplete="email" required>
+                    </div>
+                    <div class="quote-field">
+                        <label for="phone">Phone Number <span aria-hidden="true">*</span></label>
+                        <input type="tel" id="phone" name="Phone Number" autocomplete="tel" required>
+                    </div>
+                    <div class="quote-field">
+                        <label for="device">Device &amp; Model <span aria-hidden="true">*</span></label>
+                        <input type="text" id="device" name="Device and Model" placeholder="e.g. PS5, iPhone 13" required>
+                    </div>
+                    <div class="quote-field quote-full">
+                        <label for="service-method">Service Preference <span aria-hidden="true">*</span></label>
+                        <select id="service-method" name="Preferred Service Method" required>
+                            <option value="" disabled selected>Choose an option</option>
+                            <option value="Local drop-off - Chester VA area">Local Drop-Off — Chester, VA Area (by appointment)</option>
+                            <option value="Mail-in repair">Mail-In Repair — Nationwide</option>
+                            <option value="Not sure yet">Not Sure Yet</option>
+                        </select>
+                    </div>
+                    <div class="quote-field quote-full">
+                        <label for="message">What's going on with your device? <span aria-hidden="true">*</span></label>
+                        <textarea id="message" name="Description" placeholder="Briefly describe the issue..." required></textarea>
+                    </div>
+                </div>
+                <p class="quote-note">Free quote, no obligation. Please wait for approval before dropping off or shipping your device. Don't include passwords or sensitive information.</p>
+                <button type="submit" class="cta-button">Request Free Quote</button>
             </form>
         </div>
     </section>
