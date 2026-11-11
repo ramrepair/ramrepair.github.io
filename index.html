@@ -319,6 +319,17 @@
             text-align: right;
         }
 
+        .reviews-intro { color: var(--text-color-light); margin-bottom: 1.5rem; }
+        .reviews-carousel { max-width: 760px; margin: 0 auto; overflow: hidden; }
+        .reviews-track { display: flex; transition: transform .45s ease; }
+        .review-card { flex: 0 0 100%; box-sizing: border-box; padding: 1.6rem; background: var(--tertiary-color); border-radius: 12px; text-align: left; }
+        .review-source { color: #fff; font-size: .82rem; font-weight: 700; letter-spacing: .03em; margin-bottom: .8rem; }
+        .review-quote { color: #fff; line-height: 1.65; font-size: 1rem; }
+        .review-author { color: var(--primary-color); font-weight: 700; margin-top: 1rem; }
+        .reviews-controls { display: flex; justify-content: center; align-items: center; gap: 1.25rem; margin-top: 1rem; color: #fff; }
+        .reviews-controls button { border: 1px solid #777; border-radius: 50%; width: 42px; height: 42px; background: #333; color: white; font-size: 1.5rem; cursor: pointer; }
+        .reviews-controls button:hover, .reviews-controls button:focus-visible { background: var(--primary-color); }
+        @media (prefers-reduced-motion: reduce) { .reviews-track { transition: none; } }
         /* Footer */
         footer {
             background-color: var(--secondary-color);
@@ -430,13 +441,23 @@
     <section id="testimonials">
         <div class="container">
             <h2>What Our Customers Say</h2>
-            <div class="testimonial-card">
-                <p>"RAM Repair fixed my laptop's charging issue quickly and for a great price. I highly recommend them!"</p>
-                <span class="author">- Jane D.</span>
+            <p class="reviews-intro">Real feedback from RAM Repair customers on Google.</p>
+            <div class="reviews-carousel" aria-label="Customer reviews">
+                <div class="reviews-track" id="reviews-track">
+                <article class="review-card" aria-label="Review 1 of 8"><div class="review-source">Google Review</div><p class="review-quote">“Excellent service! I dropped off my son's PlayStation 5 for an HDMI port repair, and it was ready the very next day. Fast, professional, and my son's PS5 works perfectly now. Highly recommend!”</p><p class="review-author">— Imani Hughes</p></article>
+                <article class="review-card" aria-label="Review 2 of 8"><div class="review-source">Google Review</div><p class="review-quote">“Great work with both controllers my son is happy with his controller . No more stick drift. I will recommend to anyone who needs a repair call RAM repair...”</p><p class="review-author">— Chris Hilliard</p></article>
+                <article class="review-card" aria-label="Review 3 of 8"><div class="review-source">Google Review</div><p class="review-quote">“Robbie is an amazing tech repairman! He kept me updated throughout the entire process, from drop-off to pickup. He is incredibly thorough in his troubleshooting. In my case, he saved me the cost of a new motherboard by discovering that the issue was an unsoldered, broken button. My PC is now working great! Thanks again!”</p><p class="review-author">— Granger Pfleiger</p></article>
+                <article class="review-card" aria-label="Review 4 of 8"><div class="review-source">Google Review</div><p class="review-quote">“Other places wouldn't help or repair my in-ear monitoring system, but Robbie just said, &quot;Yes, I'll fix it for you.&quot; Excellent service and great work.”</p><p class="review-author">— Salvador Mayorga</p></article>
+                <article class="review-card" aria-label="Review 5 of 8"><div class="review-source">Google Review</div><p class="review-quote">“Amazing service. He replaced my iPhone 13 Pro battery in less than 10 minutes. The price was fair and matched the quote, and my phone feels faster and smoother than ever. Quick, professional, and reliable,definitely recommend RAM Repair.”</p><p class="review-author">— Christian Gilmore</p></article>
+                <article class="review-card" aria-label="Review 6 of 8"><div class="review-source">Google Review</div><p class="review-quote">“Robbie has repaired my phone twice. Both times, he's been so professional, courteous, and flexible with making sure my phone is fixed as soon as possible. His pricing is very competitive, he does a great job on the repairs, and is very knowledgeable about the industry and his craft.”</p><p class="review-author">— Carrie Bolton</p></article>
+                <article class="review-card" aria-label="Review 7 of 8"><div class="review-source">Google Review</div><p class="review-quote">“Excellent and fast work. Installed two TMR's in my Dualsense controllers in one day. Highly recommend his services!”</p><p class="review-author">— Tim Gunter</p></article>
+                <article class="review-card" aria-label="Review 8 of 8"><div class="review-source">Google Review</div><p class="review-quote">“This guy is amazing fast and very reliable my system was on the brink of death and he performed a Lazarus on it best hdmi repair and cleaning around gotta check him out and he repairs iPhone’s Xbox’s and etc great guy”</p><p class="review-author">— Tgb chumm</p></article>
+                </div>
             </div>
-            <div class="testimonial-card">
-                <p>"My son's game console was unusable until RAM Repair fixed the HDMI port. Fast and professional service!"</p>
-                <span class="author">- Mike T.</span>
+            <div class="reviews-controls">
+                <button type="button" id="review-prev" aria-label="Previous review">‹</button>
+                <span id="review-count" aria-live="polite">1 of 8</span>
+                <button type="button" id="review-next" aria-label="Next review">›</button>
             </div>
         </div>
     </section>
@@ -515,6 +536,44 @@
                 window.addEventListener('resize', updateShortcut);
             }
             updateShortcut();
+        })();
+    </script>
+    <script>
+        (function () {
+            const track = document.getElementById('reviews-track');
+            const cards = track ? Array.from(track.children) : [];
+            const counter = document.getElementById('review-count');
+            const carousel = document.querySelector('.reviews-carousel');
+            const section = document.getElementById('testimonials');
+            if (!cards.length || !carousel || !section) return;
+            let index = 0;
+            let timer;
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            function show(next) {
+                index = (next + cards.length) % cards.length;
+                track.style.transform = 'translateX(-' + (index * 100) + '%)';
+                counter.textContent = (index + 1) + ' of ' + cards.length;
+                cards.forEach((card, i) => {
+                    card.setAttribute('aria-hidden', String(i !== index));
+                });
+            }
+            function stop() { window.clearInterval(timer); timer = null; }
+            function play() {
+                stop();
+                if (!reduceMotion.matches && !document.hidden && !section.matches(':hover') && !section.contains(document.activeElement)) {
+                    timer = window.setInterval(() => show(index + 1), 7000);
+                }
+            }
+            document.getElementById('review-prev').addEventListener('click', () => { show(index - 1); play(); });
+            document.getElementById('review-next').addEventListener('click', () => { show(index + 1); play(); });
+            section.addEventListener('mouseenter', stop);
+            section.addEventListener('mouseleave', play);
+            section.addEventListener('focusin', stop);
+            section.addEventListener('focusout', () => window.setTimeout(play, 0));
+            document.addEventListener('visibilitychange', play);
+            reduceMotion.addEventListener('change', play);
+            show(0);
+            play();
         })();
     </script>
 </body>
