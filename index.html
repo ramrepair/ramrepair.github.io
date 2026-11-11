@@ -526,6 +526,34 @@
             html { scroll-behavior: auto; }
             .cta-button, .service-card { transition: none; }
         }
+
+        /* Accessible, native expandable FAQ */
+        #faq .faq-intro { color: #c6c7cf; max-width: 680px; margin: 0 auto 2rem; }
+        #faq .faq-list { max-width: 850px; margin: 0 auto; text-align: left; display: grid; gap: .8rem; }
+        #faq .faq-item { margin: 0; padding: 0; max-width: none; overflow: hidden; }
+        #faq .faq-item[open] { border-color: #a84049; }
+        #faq .faq-item summary {
+            display: flex; align-items: center; justify-content: space-between; gap: 1.2rem;
+            padding: 1.25rem 1.4rem; color: #f8f8fa; font-weight: 600;
+            cursor: pointer; list-style: none; font-size: 1.03rem;
+        }
+        #faq .faq-item summary::-webkit-details-marker { display: none; }
+        #faq .faq-item summary:hover { color: #ff777a; }
+        #faq .faq-item summary:focus-visible { outline: 3px solid #ffbdc1; outline-offset: -3px; }
+        #faq .faq-chevron { flex: 0 0 11px; width: 11px; height: 11px; border-right: 2px solid #f16a6e; border-bottom: 2px solid #f16a6e; transform: rotate(45deg); transition: transform .2s ease; }
+        #faq .faq-item[open] .faq-chevron { transform: rotate(225deg); }
+        #faq .faq-answer { border-top: 1px solid #404149; padding: 1.2rem 1.4rem 1.45rem; color: #d7d7de; line-height: 1.75; }
+        #faq .faq-answer p + p { margin-top: .9rem; }
+        #faq .faq-answer ol { padding-left: 1.4rem; margin: .85rem 0; }
+        #faq .faq-answer li + li { margin-top: .5rem; }
+        #faq .faq-answer a { color: #ff8589; text-underline-offset: 3px; }
+        #faq .faq-footer { margin: 2.3rem auto 0; }
+        #faq .faq-footer p { color: #c9c9d0; margin-bottom: 1rem; }
+        @media (max-width: 560px) {
+            #faq .faq-item summary { padding: 1rem; font-size: .98rem; }
+            #faq .faq-answer { padding: 1rem; }
+        }
+        @media (prefers-reduced-motion: reduce) { #faq .faq-chevron { transition: none; } }
     </style>
 </head>
 <body>
@@ -605,7 +633,7 @@
         <div class="container">
             <h2>Our Warranty</h2>
             <div class="warranty-box">
-                <p>All parts and repairs provided by RAM Repair are covered by a **2-month warranty against defects**. This warranty does not cover any form of physical or water damage.</p>
+                <p>Covered repairs include a <strong>60-day limited repair warranty</strong> for eligible defects associated with the completed repair or replacement parts. Physical damage, liquid damage, misuse, and unrelated issues are not covered. Every completed repair undergoes thorough testing before return. Contact us if you have questions about coverage for your service.</p>
             </div>
         </div>
     </section>
@@ -620,13 +648,44 @@
     <section id="faq">
         <div class="container">
             <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>How long does a typical repair take?</h3>
-                <p>Most of our repairs are completed within **24 to 48 hours** from the time you drop off your device. We prioritize quick and efficient service to get you back up and running as soon as possible.</p>
+            <p class="faq-intro">Everything you need to know before your repair. Select a question to see the details.</p>
+            <div class="faq-list">
+                <details class="faq-item" open>
+                    <summary>How much does a repair cost?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                    <div class="faq-answer"><p>Repair services at RAM Repair start at just <strong>$48!</strong> Final pricing depends on your device model, the repair required, and replacement-part costs.</p><p>We believe in honest, competitive pricing. Submit a <a href="#quote">free repair quote request</a> with your device information, and we'll help you find an affordable solution.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>How long will my repair take?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                    <div class="faq-answer"><p>Most standard repairs are completed within <strong>24–48 hours after local drop-off</strong>, depending on complexity, parts availability, and our current workload.</p><p>For nationwide mail-in repairs, turnaround times vary based on when your device arrives, the issue involved, and any required parts or diagnostics. We'll keep you informed if additional time is needed.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do you offer local drop-off?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                    <div class="faq-answer"><p><strong>Absolutely!</strong> RAM Repair is proudly based in <strong>Chester, Virginia</strong>, serving Chester, Chesterfield, Richmond, and surrounding communities.</p><p>Local drop-off and pickup are available <strong>by appointment</strong>. Contact us or <a href="#quote">request a free quote</a> to arrange a convenient time.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I mail in my device for repair?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                    <div class="faq-answer"><p><strong>You absolutely can!</strong> We offer nationwide mail-in repairs throughout the United States.</p><ol><li>Select <a href="#quote">Get Your Free Repair Quote</a>.</li><li>Enter your device details, describe the issue, and choose the mail-in service option.</li><li>We'll review your request and provide pricing and shipping instructions.</li><li>Once your device arrives, we'll inspect it, complete the approved repair, and arrange return shipping.</li></ol><p><strong>Please wait for confirmation and shipping instructions before mailing your device.</strong></p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>Do your repairs include a warranty?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                    <div class="faq-answer"><p><strong>Absolutely!</strong> We use reliable replacement parts and professional workmanship, and thoroughly test completed repairs before returning devices to customers.</p><p>Covered repairs include a <strong>60-day limited repair warranty</strong> for eligible defects related to the completed repair or replacement parts. The warranty does not cover accidental or physical damage, liquid damage, misuse, or unrelated device issues occurring after service.</p><p>If your device needs additional service after the warranty period, please reach out. Depending on the circumstances, we may offer discounted repair pricing or another affordable solution.</p><p><strong>Quality Parts. Quality Repairs. That's the RAM Repair standard.</strong></p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>What if my device has additional damage?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                    <div class="faq-answer"><p>If we discover additional damage or unexpected issues, we'll explain our findings and discuss your options before proceeding.</p><p>Whenever possible, we'll work with you on an affordable solution, including potential discounts when combining repairs. <strong>No additional repairs or charges will be authorized without your approval.</strong></p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>Will I lose my photos, files, or saved data?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                    <div class="faq-answer"><p>Many common hardware repairs do not normally require data removal, but some repairs, software procedures, or device conditions may affect stored information.</p><p>We recommend backing up important photos, contacts, files, and other data before service whenever possible. If your data is especially important, <a href="#quote">contact us before proceeding</a> so we can discuss the risks of your specific repair.</p></div>
+                </details>
+                <details class="faq-item">
+                    <summary>What types of electronics do you repair?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                    <div class="faq-answer"><p>We repair a wide range of electronics, including smartphones, tablets, gaming consoles, controllers, laptops, desktop computers, and other devices. We also perform select component-level and circuit-board repairs when practical and supported by parts availability.</p><p><strong>If replacement parts are available and the repair is practical, there's a good chance we can help!</strong></p><p>We do not currently service televisions, computer monitors, or printers. Not sure about your device? <a href="#quote">Send us a free quote request</a> with its model and symptoms.</p></div>
+                </details>
             </div>
-            <div class="faq-item">
-                <h3>What devices do you not work on?</h3>
-                <p>While we specialize in a wide range of electronics, we do not currently work on **printers, TVs, or anything radio related.**</p>
+            <div class="faq-footer">
+                <p>Still have questions? We're happy to help with your specific device.</p>
+                <a href="#quote" class="cta-button">Get Your Free Repair Quote</a>
             </div>
         </div>
     </section>
