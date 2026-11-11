@@ -339,6 +339,173 @@
             padding: 1rem 0;
             font-size: 0.9rem;
         }
+
+        /* RAM Repair balanced visual refresh — premium, clean, subtly high-tech */
+        :root {
+            --primary-color: #ed4145;
+            --secondary-color: #17181c;
+            --tertiary-color: #25262c;
+            --bg-color: #101115;
+            --text-color-dark: #c4c6cf;
+        }
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg-color); }
+        .container { max-width: 1120px; }
+        .top-phone-bar { background: #ae252d; font-size: .9rem; letter-spacing: .015em; }
+        header {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(3.5rem, 7vw, 6rem);
+            background:
+                radial-gradient(ellipse at 75% 10%, rgba(216,35,51,.23), transparent 48%),
+                radial-gradient(ellipse at 15% 85%, rgba(124,25,36,.12), transparent 46%),
+                linear-gradient(145deg, #1a1b20 0%, #101115 76%);
+            border-bottom: 1px solid #3c242b;
+        }
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: .25;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: linear-gradient(to bottom, #000, transparent 90%);
+        }
+        header .container { position: relative; z-index: 1; }
+        header h1 {
+            font-size: clamp(3.1rem, 8vw, 5.4rem);
+            letter-spacing: -.055em;
+            line-height: 1.12;
+            margin-bottom: .7rem;
+            color: #fff;
+        }
+        header .container > p:first-of-type {
+            color: #ff6267;
+            font-size: clamp(1.35rem, 3.2vw, 2rem);
+            font-weight: 700;
+            letter-spacing: -.025em;
+            margin-bottom: .9rem;
+        }
+        header .hero-quality-message {
+            max-width: 610px;
+            font-size: 1.04rem;
+            color: #d3d3d9;
+            margin-bottom: 1.8rem;
+        }
+        header .hero-tagline { margin-top: 1.2rem; color: #cfd0d5; font-size: .88rem; letter-spacing: .04em; }
+        .hero-trust {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: .7rem 1.3rem;
+            margin-top: 2rem;
+            font-size: .78rem;
+            color: #e2e2e7;
+        }
+        .hero-trust span {
+            padding: .55rem .8rem;
+            border: 1px solid #454049;
+            border-radius: 999px;
+            background: rgba(255,255,255,.045);
+        }
+        .trust-stars { color: #f5c542; letter-spacing: .06em; margin-right: .25rem; }
+        .cta-button {
+            box-shadow: 0 7px 25px rgba(226,45,56,.23);
+            transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(226,45,56,.34); }
+        .cta-button:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid #ffbdc1; outline-offset: 3px; }
+        section { padding: clamp(3.5rem, 7vw, 5.5rem) 0; }
+        section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            letter-spacing: -.035em;
+            color: #f7f7f9;
+            border: none;
+            padding: 0 0 .8rem;
+            position: relative;
+        }
+        section h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 3px;
+            width: 56px;
+            border-radius: 3px;
+            background: var(--primary-color);
+        }
+        #services, #warranty, #testimonials, #quote { background: #17181c; }
+        #why-choose-us, #about, #faq { background: #101115; }
+        .services-grid, .features-list { gap: 1.2rem; margin-top: 2.2rem; }
+        .service-card, .feature-item, .faq-item, #warranty .warranty-box, .review-card {
+            background: linear-gradient(155deg, #292a30, #222329);
+            border: 1px solid #3b3d46;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.12);
+        }
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 1.7rem;
+            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+        .service-card::before {
+            content: "";
+            display: block;
+            width: 34px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+            margin-bottom: 1.1rem;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: #b63a44;
+            box-shadow: 0 14px 28px rgba(0,0,0,.25);
+        }
+        .service-card h3, .feature-item h3, .faq-item h3 { color: #ff666a; }
+        .service-card p { color: #d1d1d8; }
+        .feature-item { padding: 2rem 1.5rem; }
+        .feature-item h3 { margin-bottom: .75rem; }
+        #warranty .warranty-box { max-width: 790px; }
+        .faq-item { margin: 1rem auto; }
+        .reviews-carousel { max-width: 790px; }
+        .review-card { padding: clamp(1.4rem, 4vw, 2.4rem); }
+        .review-stars { color: #f5c542; }
+        .quote-form {
+            background: linear-gradient(160deg, #27282e, #1e1f24);
+            border: 1px solid #45454e;
+            border-radius: 18px;
+            padding: clamp(1.2rem, 4vw, 2.2rem);
+            box-shadow: 0 18px 45px rgba(0,0,0,.22);
+        }
+        .quote-form input:not([type="hidden"]), .quote-form select, .quote-form textarea {
+            background: #16171b;
+            border: 1px solid #555660;
+            border-radius: 8px;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+        .quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus {
+            outline: none;
+            border-color: #fa6268;
+            box-shadow: 0 0 0 3px rgba(237,65,69,.18);
+        }
+        .quote-form button { margin-top: .35rem; }
+        .floating-quote { box-shadow: 0 8px 28px rgba(0,0,0,.42); }
+        @media (max-width: 600px) {
+            header { padding: 4.2rem 0 3.6rem; }
+            .hero-trust { gap: .55rem; }
+            .hero-trust span { font-size: .73rem; }
+            .service-card { padding: 1.6rem; }
+            .quote-form { padding: 1.25rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .cta-button, .service-card { transition: none; }
+        }
     </style>
 </head>
 <body>
@@ -354,6 +521,11 @@
             <p class="hero-quality-message">Professional workmanship, quality replacement parts, and thorough testing for repairs you can trust.</p>
             <a href="#quote" class="cta-button">Get Your Free Repair Quote</a>
             <p class="hero-tagline">Don't Replace It. Repair It.</p>
+            <div class="hero-trust" aria-label="RAM Repair highlights">
+                <span><strong class="trust-stars" aria-hidden="true">★★★★★</strong> 46 Five-Star Google Reviews</span>
+                <span>Chester, Virginia</span>
+                <span>Nationwide Mail-In Repairs</span>
+            </div>
         </div>
     </header>
 
