@@ -440,11 +440,25 @@
         #services, #warranty, #testimonials, #quote { background: #17181c; }
         #why-choose-us, #about, #faq { background: #101115; }
         .services-grid, .features-list { gap: 1.2rem; margin-top: 2.2rem; }
-        /* Center the final pair beneath the first four services on wide screens. */
-        @media (min-width: 1100px) {
-            .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-            .services-grid .service-card:nth-child(5) { grid-column: 2; }
-            .services-grid .service-card:nth-child(6) { grid-column: 3; }
+        /* Center incomplete service-card rows at every viewport width. */
+        .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+        }
+        .services-grid .service-card {
+            flex: 0 1 calc((100% - 3 * 1.2rem) / 4);
+            min-width: min(100%, 230px);
+        }
+        @media (max-width: 1050px) {
+            .services-grid .service-card { flex-basis: calc((100% - 2 * 1.2rem) / 3); }
+        }
+        @media (max-width: 760px) {
+            .services-grid .service-card { flex-basis: calc((100% - 1.2rem) / 2); }
+        }
+        @media (max-width: 520px) {
+            .services-grid .service-card { flex-basis: 100%; }
         }
         .service-card, .feature-item, .faq-item, #warranty .warranty-box, .review-card {
             background: linear-gradient(155deg, #292a30, #222329);
