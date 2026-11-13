@@ -364,8 +364,8 @@
         }
 
         .reviews-intro { color: var(--text-color-light); margin-bottom: 1.5rem; }
-        .reviews-carousel { max-width: 760px; margin: 0 auto; overflow: hidden; }
-        .reviews-track { display: flex; transition: transform .45s ease; }
+        .reviews-carousel { max-width: 760px; margin: 0 auto; overflow: hidden; transition: height .35s ease; }
+        .reviews-track { display: flex; align-items: flex-start; transition: transform .45s ease; }
         .review-card { flex: 0 0 100%; box-sizing: border-box; padding: 1.6rem; background: var(--tertiary-color); border-radius: 12px; text-align: left; }
         .review-source { color: #fff; font-size: .82rem; font-weight: 700; letter-spacing: .03em; margin-bottom: .8rem; }
         .review-stars { color: #f5c542; font-size: 1.4rem; letter-spacing: 0.15em; line-height: 1.2; margin: 0.15rem 0 0.9rem; }
@@ -374,7 +374,7 @@
         .reviews-controls { display: flex; justify-content: center; align-items: center; gap: 1.25rem; margin-top: 1rem; color: #fff; }
         .reviews-controls button { border: 1px solid #777; border-radius: 50%; width: 42px; height: 42px; background: #333; color: white; font-size: 1.5rem; cursor: pointer; }
         .reviews-controls button:hover, .reviews-controls button:focus-visible { background: var(--primary-color); }
-        @media (prefers-reduced-motion: reduce) { .reviews-track { transition: none; } }
+        @media (prefers-reduced-motion: reduce) { .reviews-track { transition: none; } .reviews-carousel { transition: none; } }
         /* Footer */
         footer {
             background-color: var(--secondary-color);
@@ -849,6 +849,7 @@
                 index = (next + cards.length) % cards.length;
                 track.style.transform = 'translateX(-' + (index * 100) + '%)';
                 counter.textContent = (index + 1) + ' of ' + cards.length;
+                carousel.style.height = cards[index].offsetHeight + 'px';
                 cards.forEach((card, i) => {
                     card.setAttribute('aria-hidden', String(i !== index));
                 });
@@ -868,6 +869,16 @@
             section.addEventListener('focusout', () => window.setTimeout(play, 0));
             document.addEventListener('visibilitychange', play);
             reduceMotion.addEventListener('change', play);
+            if ('ResizeObserver' in window) {
+                const observer = new ResizeObserver(() => {
+                    carousel.style.height = cards[index].offsetHeight + 'px';
+                });
+                cards.forEach(card => observer.observe(card));
+            } else {
+                window.addEventListener('resize', () => {
+                    carousel.style.height = cards[index].offsetHeight + 'px';
+                });
+            }
             show(0);
             play();
         })();
